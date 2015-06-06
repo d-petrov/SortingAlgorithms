@@ -1,28 +1,43 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+#Master .gitignore for Applications
+#Version 1.02062015
+#Ignore CPP Builder & TeamSource
+#TeamSource lock
+*.tsl
+#TeamSource Reg
+*.tsr
+#Object files/precomp
 *.obj
-
-# Precompiled Headers
-*.gch
+*.o
 *.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+#Debugger Info
+*.tds
+#Local specific files
+*.~*
+*.dsk
+#Ignore exe,log
+/exe/*.lib
+*.off
 *.exe
-*.out
-*.app
+*.log
+#Ignore parasitic files
+*.zip
+*.rar
+*.xml
+*.txt
+#Ignore git specific files
+*.bak
+*.rej
+*.orig
+#Ignore aux/cgi dirs, as they are tracked as separate projects
+/*_aux/
+/*_cgi/
+/*_wingman/
+/obj
+#END Master .gitignore for Applications
+#
+#Ignore Project specific stuff
+#<Insert project name here>
+#<Insert your ignores here e.g.>
+#*/reportsData/
+#*.rml
+#*.usr
