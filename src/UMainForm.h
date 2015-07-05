@@ -11,6 +11,8 @@
 #include <Dialogs.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
+enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL};
+//---------------------------------------------------------------------------
 #include "UDataOps.h"
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
@@ -24,13 +26,17 @@ __published:	// IDE-managed Components
   TRichEdit *DataPreviewRichEdit;
   TGroupBox *GroupBox3;
   TGroupBox *GroupBox4;
-  TRadioGroup *RadioGroup1;
   TButton *GenerateSpecificButton;
-  TButton *Button1;
+  TComboBox *MethodComboBox;
+  TLabel *Label1;
+  TButton *GoButton;
+  TRichEdit *ResultRichEdit;
   void __fastcall ImportDataSetButtonClick(TObject *Sender);
-  void __fastcall Button1Click(TObject *Sender);
+  void __fastcall GoButtonClick(TObject *Sender);
 private:	// User declarations
   DataOps* dataOps;
+  //
+  void ShowResult(vector<int> aInput);
 public:		// User declarations
   __fastcall TMainForm(TComponent* Owner);
 };

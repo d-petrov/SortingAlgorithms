@@ -68,11 +68,27 @@ __int64 SelectionSort::SortChild(vector<int> &aInputData)
     }
     if(min != i)
     {
-      swap(aInputData[i], aInputData[min]);
+      swap(aInputData[i], aInputData[min]);//internal function
       iterations++;
     }
   }
   return iterations;
+}
+//---------------------------------------------------------------------------
+__int64 BubbleSort::SortChild(vector<int> &aInputData)
+{
+  size_t len = aInputData.size();
+  //
+  for (int i = len; i > 1 ; i--)
+  {
+    for (int j = 0; j < i - 1 ; j++)
+    {
+      if(aInputData[j] > aInputData[j + 1])
+      {
+        swap(aInputData[j],aInputData[j + 1]);
+      }
+    }
+  }
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

@@ -19,6 +19,7 @@ class DataOps
   TStringList* dataSet;
   //
   bool LoadFromFile(AnsiString aFileName);
+  AnsiString FormatOutputText(AnsiString aData);
   bool SaveToFile(AnsiString aFileName,TStringList* aData);
   //
   vector<int> DataSetToArray();

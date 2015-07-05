@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 392
-  Top = 183
+  Left = 170
+  Top = 269
   Width = 828
   Height = 403
   Caption = 'MainForm'
@@ -68,14 +68,12 @@ object MainForm: TMainForm
     Height = 185
     Caption = 'Output '
     TabOrder = 1
-    object Button1: TButton
-      Left = 56
-      Top = 32
-      Width = 75
-      Height = 25
-      Caption = 'Button1'
+    object ResultRichEdit: TRichEdit
+      Left = 8
+      Top = 16
+      Width = 321
+      Height = 81
       TabOrder = 0
-      OnClick = Button1Click
     end
   end
   object GroupBox4: TGroupBox
@@ -85,16 +83,35 @@ object MainForm: TMainForm
     Height = 185
     Caption = 'Compute'
     TabOrder = 2
-    object RadioGroup1: TRadioGroup
-      Left = 8
-      Top = 16
-      Width = 185
-      Height = 153
-      Caption = 'Algorithm'
-      Items.Strings = (
-        'Insertion sort'
-        'Merge sort')
+    object Label1: TLabel
+      Left = 16
+      Top = 24
+      Width = 39
+      Height = 13
+      Caption = 'Method:'
+    end
+    object MethodComboBox: TComboBox
+      Left = 64
+      Top = 24
+      Width = 145
+      Height = 21
+      ItemHeight = 13
       TabOrder = 0
+      Text = '--select--'
+      Items.Strings = (
+        '--select--'
+        'Selection sort'
+        'Insertion sort'
+        'Bubble sort')
+    end
+    object GoButton: TButton
+      Left = 238
+      Top = 24
+      Width = 75
+      Height = 25
+      Caption = 'Go'
+      TabOrder = 1
+      OnClick = GoButtonClick
     end
   end
   object OpenDialog: TOpenDialog

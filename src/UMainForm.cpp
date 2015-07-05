@@ -22,27 +22,47 @@ void __fastcall TMainForm::ImportDataSetButtonClick(TObject *Sender)
 {
   if(OpenDialog->Execute())
   {
+    dataOps->dataSet->Clear();
     if(!dataOps->LoadFromFile(OpenDialog->FileName))
     {
       Application->MessageBoxA("Error","File could not be read.",MB_OK|MB_ICONERROR);
+      return;
     }
+    DataPreviewRichEdit->Text = dataOps->dataSet->Text;
   }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Button1Click(TObject *Sender)
+void TMainForm::ShowResult(vector<int> aInput)
 {
-  vector<int> input = dataOps->DataSetToArray();
-  //
-  InsertionSort sort;
-  sort.Sort(input);
-  //
-  TStringList* outList = dataOps->ArrayToDataSet(input);
+  TStringList* outList = dataOps->ArrayToDataSet(aInput);
   if(outList)
   {
+    ResultRichEdit->Text = FormatOutputText(outList->Text);
     dataOps->SaveToFile("D:\\result.txt",outList);
   }
   delete outList;
-  //
 }
 //---------------------------------------------------------------------------
+void __fastcall TMainForm::GoButtonClick(TObject *Sender)
+{
+  SortBase* sort;
+  switch(MethodComboBox->ItemIndex)
+  {
+    case IDX_SEL : sort = new SelectionSort;
+      break;
+    case IDX_INS : sort = new InsertionSort;
+      break;
+    case IDX_BBL : sort = new BubbleSort;
+      break;
+    default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);return;
+  }
+  vector<int> input = dataOps->DataSetToArray();
+  sort->Sort(input);
+  //
+  ShowResult(input);
+  //
+  delete sort;
+}
+//---------------------------------------------------------------------------
+
 

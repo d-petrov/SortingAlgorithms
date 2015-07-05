@@ -17,14 +17,19 @@ bool DataOps::LoadFromFile(AnsiString aFileName)
   return SIGeneral::LoadListFromFile(dataSet,aFileName);
 }
 //---------------------------------------------------------------------------
+AnsiString DataOps::FormatOutputText(AnsiString aData)
+{
+  AnsiString text = StringReplace(aData,"\r\n",SEPARATOR,TReplaceFlags()<<rfReplaceAll);
+  return text.SubString(1,text.Length() - 1);
+}
+//---------------------------------------------------------------------------
 bool DataOps::SaveToFile(AnsiString aFileName,TStringList* aData)
 {
   if(!aData)
   {
     return false;
   }
-  AnsiString text = StringReplace(aData->Text,"\r\n",SEPARATOR,TReplaceFlags()<<rfReplaceAll);
-  text = text.SubString(1,text.Length() - 1);
+  AnsiString text = FormatOutputText(aData->Text);
   //
   return SIGeneral::SaveStringToFile(text,aFileName,false);
 }
