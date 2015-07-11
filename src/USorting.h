@@ -53,4 +53,13 @@ class Combsort : public SortBase
      __int64 SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
+class Mergesort : public SortBase
+{
+  private:
+     vector<int> DoSort(vector<int> &aInputData);
+     vector<int> DoMerge(vector<int> &aInputData, vector<int> &aLeft, vector<int> &aRight);
+    //
+     __int64 SortChild(vector<int> &aInputData);
+};
+//---------------------------------------------------------------------------
 #endif

@@ -70,8 +70,8 @@ object MainForm: TMainForm
     TabOrder = 1
     object Label2: TLabel
       Left = 8
-      Top = 104
-      Width = 73
+      Top = 128
+      Width = 81
       Height = 13
       Caption = 'Runtime(msec):'
     end
@@ -83,11 +83,19 @@ object MainForm: TMainForm
       TabOrder = 0
     end
     object RuntimeStaticText: TStaticText
-      Left = 88
-      Top = 104
-      Width = 4
-      Height = 4
+      Left = 80
+      Top = 129
+      Width = 20
+      Height = 15
       TabOrder = 1
+    end
+    object OutputResultStaticText: TStaticText
+      Left = 8
+      Top = 104
+      Width = 35
+      Height = 17
+      Caption = 'Ready'
+      TabOrder = 2
     end
   end
   object GroupBox4: TGroupBox
@@ -118,7 +126,8 @@ object MainForm: TMainForm
         'Insertion sort'
         'Bubble sort'
         'Shellsort'
-        'Combsort')
+        'Combsort'
+        'Mergesort')
     end
     object GoButton: TButton
       Left = 238

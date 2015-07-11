@@ -35,10 +35,19 @@ void __fastcall TMainForm::ImportDataSetButtonClick(TObject *Sender)
 void TMainForm::ShowResult(vector<int> aInput,RuntimeResult* aRunRes)
 {
   TStringList* outList = dataOps->ArrayToDataSet(aInput);
+  //
   if(outList)
   {
+    AnsiString resultFileName = dataOps->GetResultFullFileName();
     ResultRichEdit->Text = dataOps->FormatOutputText(outList->Text);
-    dataOps->SaveToFile("D:\\result.txt",outList);
+    if(dataOps->SaveToFile(resultFileName,outList))
+    {
+      OutputResultStaticText->Caption = "Saved to " + resultFileName;
+    }
+    else
+    {
+      OutputResultStaticText->Caption = "Failed to save to " + resultFileName;
+    }
   }
   delete outList;
   //
@@ -50,7 +59,7 @@ void TMainForm::ShowResult(vector<int> aInput,RuntimeResult* aRunRes)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::GoButtonClick(TObject *Sender)
 {
-  SortBase* sort;
+  SortBase* sort = NULL;
   switch(MethodComboBox->ItemIndex)
   {
     case IDX_SEL : sort = new SelectionSort;
@@ -62,6 +71,8 @@ void __fastcall TMainForm::GoButtonClick(TObject *Sender)
     case IDX_SHL : sort = new Shellsort;
       break;
     case IDX_CMB : sort = new Combsort;
+      break;
+    case IDX_MRG : sort = new Mergesort;
       break;
     default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);
      return;

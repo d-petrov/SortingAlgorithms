@@ -11,7 +11,7 @@
 #include <Dialogs.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL,IDX_CMB};
+enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL,IDX_CMB,IDX_MRG};
 //---------------------------------------------------------------------------
 #include "UDataOps.h"
 #include "USorting.h"
@@ -34,6 +34,7 @@ __published:	// IDE-managed Components
   TRichEdit *ResultRichEdit;
   TLabel *Label2;
   TStaticText *RuntimeStaticText;
+  TStaticText *OutputResultStaticText;
   void __fastcall ImportDataSetButtonClick(TObject *Sender);
   void __fastcall GoButtonClick(TObject *Sender);
 private:	// User declarations

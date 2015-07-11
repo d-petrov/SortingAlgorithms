@@ -4,6 +4,16 @@
 #include "UDataOps.h"
 #include <vcl.h>
 //---------------------------------------------------------------------------
+AnsiString DataOps::GetAppPath()
+{
+  return SIGeneral::AddLastDelimiter(appPath,false);
+}
+//---------------------------------------------------------------------------
+AnsiString DataOps::GetResultFullFileName()
+{
+  return GetAppPath() + RESULT_FILE_NAME;
+}
+//---------------------------------------------------------------------------
 bool DataOps::LoadFromFile(AnsiString aFileName)
 {
   if(!dataSet)
