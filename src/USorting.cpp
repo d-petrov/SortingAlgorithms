@@ -290,7 +290,7 @@ __int64 Heapsort::SortChild(vector<int> &aInputData)
   //
   while (workLength - 1 > 0)
   {
-    swap(aInputData[workLength -1 ], aInputData[0]);
+    swap(aInputData[workLength - 1], aInputData[0]);
     SiftDown(aInputData, 0, workLength - 1);
     workLength--;
   }
