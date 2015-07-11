@@ -70,4 +70,14 @@ class Quicksort : public SortBase
      //
      __int64 SortChild(vector<int> &aInputData);
 };
+//---------------------------------------------------------------------------
+class Heapsort : public SortBase
+{
+  private:
+    void SiftDown(vector<int> &aInputData, int aIndex, int aSize);
+    void Heapify(vector<int> &aInputData);
+    //
+     __int64 SortChild(vector<int> &aInputData);
+};
+//---------------------------------------------------------------------------
 #endif

@@ -14,6 +14,10 @@ RuntimeResult SortBase::Sort(vector<int> &aInputData)
   result.iterations = 0;
   //
   dataLength = aInputData.size();
+  if(dataLength == 0)
+  {
+    return result;
+  }
   //
   __int64 tickCountStart = GetTickCount();
   //
@@ -197,7 +201,7 @@ vector<int> Mergesort::DoMerge(vector<int> &aInputData, vector<int> &aLeft, vect
 //---------------------------------------------------------------------------
 __int64 Mergesort::SortChild(vector<int> &aInputData)
 {
-  //DoSort(aInputData);
+  DoSort(aInputData);
 }
 //---------------------------------------------------------------------------
 void Quicksort::Partition(vector<int> &aInputData, int aPivot, int& aLeft, int& aRight)
@@ -248,6 +252,48 @@ void Quicksort::DoSort(vector<int> &aInputData, int aFirst, int aLast)
 __int64 Quicksort::SortChild(vector<int> &aInputData)
 {
   DoSort(aInputData,aInputData.front(),aInputData.back());
+}
+//---------------------------------------------------------------------------
+void Heapsort::SiftDown(vector<int> &aInputData, int aIndex, int aSize)
+{
+  while(aIndex * 2 + 1 < aSize)
+  {
+    int child = (2 * aIndex + 1);
+    if((child + 1 < aSize) && (aInputData[child] < aInputData[child+ 1]))
+    {
+      child++;
+    }
+    if(aInputData[aIndex] < aInputData[child])
+    {
+      swap(aInputData[child], aInputData[aIndex]);
+      aIndex = child;
+    }        
+    else
+    {
+      return;
+    }
+  }
+}
+//---------------------------------------------------------------------------
+void Heapsort::Heapify(vector<int> &aInputData)
+{
+  for(int index = dataLength / 2; index >= 0; index--)
+  {
+    SiftDown(aInputData, index, dataLength);
+  }
+}
+//---------------------------------------------------------------------------
+__int64 Heapsort::SortChild(vector<int> &aInputData)
+{
+  Heapify(aInputData);
+  int workLength = dataLength;
+  //
+  while (workLength - 1 > 0)
+  {
+    swap(aInputData[workLength -1 ], aInputData[0]);
+    SiftDown(aInputData, 0, workLength - 1);
+    workLength--;
+  }
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

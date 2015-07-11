@@ -11,7 +11,13 @@
 #include <Dialogs.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL,IDX_CMB,IDX_MRG,IDX_QCK};
+enum COMBO_INDEX {IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL,IDX_CMB,IDX_MRG,IDX_QCK,IDX_HPS};
+static const AnsiString ALGO_NAMES[] =
+{
+  "Selection sort","Insertion sort","Bubble sort","Shell sort",
+  "Comb sort","Merge sort","Quick sort","Heap sort"
+};
+
 //---------------------------------------------------------------------------
 #include "UDataOps.h"
 #include "USorting.h"
@@ -38,6 +44,7 @@ __published:	// IDE-managed Components
   void __fastcall ImportDataSetButtonClick(TObject *Sender);
   void __fastcall GoButtonClick(TObject *Sender);
 private:	// User declarations
+  void FillSelectionDropDown();
   DataOps* dataOps;
   //
   void ShowResult(vector<int> aInput,RuntimeResult* aRunRes = NULL);

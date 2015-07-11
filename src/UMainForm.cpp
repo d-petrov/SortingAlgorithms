@@ -16,6 +16,18 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
   : TForm(Owner)
 {
   dataOps = new DataOps;
+  FillSelectionDropDown();
+}
+//---------------------------------------------------------------------------
+void TMainForm::FillSelectionDropDown()
+{
+  MethodComboBox->Items->Clear();
+  //
+  int arrSize = sizeof(ALGO_NAMES)/sizeof(ALGO_NAMES[0]);
+  for (int i = 0; i < arrSize ; i++)
+  {
+    MethodComboBox->Items->Add(ALGO_NAMES[i]);
+  }
 }
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::ImportDataSetButtonClick(TObject *Sender)
@@ -75,6 +87,8 @@ void __fastcall TMainForm::GoButtonClick(TObject *Sender)
     case IDX_MRG : sort = new Mergesort;
       break;
     case IDX_QCK : sort = new Quicksort;
+      break;
+    case IDX_HPS : sort = new Heapsort;
       break;
     default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);
      return;
