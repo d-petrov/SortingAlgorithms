@@ -197,7 +197,57 @@ vector<int> Mergesort::DoMerge(vector<int> &aInputData, vector<int> &aLeft, vect
 //---------------------------------------------------------------------------
 __int64 Mergesort::SortChild(vector<int> &aInputData)
 {
-  DoSort(aInputData);
+  //DoSort(aInputData);
+}
+//---------------------------------------------------------------------------
+void Quicksort::Partition(vector<int> &aInputData, int aPivot, int& aLeft, int& aRight)
+{
+   while (aLeft <= aRight)
+   {
+     while(aInputData[aLeft] < aPivot)
+     {
+       aLeft++;
+     }
+     while(aInputData[aRight] > aPivot)
+     {
+       aRight--;
+     }
+     if(aLeft <= aRight)
+     {
+       swap(aInputData[aLeft],aInputData[aRight]);
+       aLeft++;
+       aRight--;
+     }
+  }
+}
+//---------------------------------------------------------------------------
+void Quicksort::DoSort(vector<int> &aInputData, int aFirst, int aLast)
+{
+  if(aFirst == aLast)
+  {
+    return;
+  }
+  //
+  int left = aFirst;
+  int right = aLast;
+  //
+  int pivot = aInputData[(left + right) / 2];
+  //
+  Partition(aInputData,pivot,left,right);
+  //
+  if(left < aLast)
+  {
+    DoSort(aInputData, left, aLast);
+  }
+  if(aFirst < right)
+  {
+    DoSort(aInputData, aFirst, right);
+  }
+}
+//---------------------------------------------------------------------------
+__int64 Quicksort::SortChild(vector<int> &aInputData)
+{
+  DoSort(aInputData,aInputData.front(),aInputData.back());
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

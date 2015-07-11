@@ -127,7 +127,8 @@ object MainForm: TMainForm
         'Bubble sort'
         'Shellsort'
         'Combsort'
-        'Mergesort')
+        'Mergesort'
+        'Quicksort')
     end
     object GoButton: TButton
       Left = 238

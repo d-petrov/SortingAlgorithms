@@ -62,4 +62,12 @@ class Mergesort : public SortBase
      __int64 SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
+class Quicksort : public SortBase
+{
+  private:
+     void Partition(vector<int> &aInputData, int aPivot, int& aLeft, int& aRight);
+     void DoSort(vector<int> &aInputData, int aFirst, int aLast);
+     //
+     __int64 SortChild(vector<int> &aInputData);
+};
 #endif

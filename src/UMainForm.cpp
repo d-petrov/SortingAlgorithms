@@ -74,6 +74,8 @@ void __fastcall TMainForm::GoButtonClick(TObject *Sender)
       break;
     case IDX_MRG : sort = new Mergesort;
       break;
+    case IDX_QCK : sort = new Quicksort;
+      break;
     default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);
      return;
   }
