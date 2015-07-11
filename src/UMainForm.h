@@ -11,7 +11,7 @@
 #include <Dialogs.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL};
+enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL,IDX_CMB};
 //---------------------------------------------------------------------------
 #include "UDataOps.h"
 #include "USorting.h"

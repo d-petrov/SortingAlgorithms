@@ -61,7 +61,10 @@ void __fastcall TMainForm::GoButtonClick(TObject *Sender)
       break;
     case IDX_SHL : sort = new Shellsort;
       break;
-    default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);return;
+    case IDX_CMB : sort = new Combsort;
+      break;
+    default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);
+     return;
   }
   vector<int> input = dataOps->DataSetToArray();
   RuntimeResult result = sort->Sort(input);

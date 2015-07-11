@@ -13,6 +13,8 @@ RuntimeResult SortBase::Sort(vector<int> &aInputData)
   result.ticks = 0;
   result.iterations = 0;
   //
+  dataLength = aInputData.size();
+  //
   __int64 tickCountStart = GetTickCount();
   //
   result.iterations = SortChild(aInputData);
@@ -26,12 +28,10 @@ RuntimeResult SortBase::Sort(vector<int> &aInputData)
 //---------------------------------------------------------------------------
 __int64 InsertionSort::SortChild(vector<int> &aInputData)
 {
-  size_t len = aInputData.size();
-
   int current = 0;
   __int64 iterations = 0;
   //
-  for (unsigned i = 1, j; i < len; i++,++iterations)
+  for (unsigned i = 1, j; i < dataLength; i++,++iterations)
   {
     j = i;
     current = aInputData[j];
@@ -53,12 +53,10 @@ __int64 SelectionSort::SortChild(vector<int> &aInputData)
   unsigned min = 0;
   __int64 iterations = 0;
   //
-  size_t len = aInputData.size();
-  //
-  for (unsigned i = 0; i < len-1; i++)
+  for (unsigned i = 0; i < dataLength-1; i++)
   {
     min = i;
-    for (j = i + 1; j < len; j++)
+    for (j = i + 1; j < dataLength; j++)
     {
       if (aInputData[i] < aInputData[min])
       {
@@ -77,9 +75,7 @@ __int64 SelectionSort::SortChild(vector<int> &aInputData)
 //---------------------------------------------------------------------------
 __int64 BubbleSort::SortChild(vector<int> &aInputData)
 {
-  size_t len = aInputData.size();
-  //
-  for (int i = len; i > 1 ; i--)
+  for (int i = dataLength; i > 1 ; i--)
   {
     for (int j = 0; j < i - 1 ; j++)
     {
@@ -93,13 +89,11 @@ __int64 BubbleSort::SortChild(vector<int> &aInputData)
 //---------------------------------------------------------------------------
 __int64 Shellsort::SortChild(vector<int> &aInputData)
 {
-  size_t len = aInputData.size();
-  //
   int gapSize = 0;
   //Assigns gap size to be half of the original size initially, which is the original Donald Shell sequence N/2*i, i={1,n}
-  for (gapSize = len/2; gapSize > 0; gapSize /= 2)
+  for (gapSize = dataLength/2; gapSize > 0; gapSize /= 2)
   {
-    for (int i = gapSize; i < len; i++)
+    for (int i = gapSize; i < dataLength; i++)
     {
       for (int j = i - gapSize; j >= 0 && aInputData[j] > aInputData[j + gapSize]; j -= gapSize)
       {
@@ -107,6 +101,44 @@ __int64 Shellsort::SortChild(vector<int> &aInputData)
       }
     }
   }
+}
+//---------------------------------------------------------------------------
+int Combsort::CalculateGap(int aGap)
+{
+  aGap /= 1.3;
+  //
+	if(aGap == 9 || aGap == 10)//select a better gap ending
+  {
+		aGap = 11;
+  }
+	if(aGap < 1)
+  {
+		return 1;
+  }
+  //
+	return aGap;
+}
+//---------------------------------------------------------------------------
+__int64 Combsort::SortChild(vector<int> &aInputData)
+{
+	int gap = dataLength;
+	bool isSwap = false;
+  //
+	do
+  {
+		isSwap = false;
+		gap = CalculateGap(gap);
+    //
+		for(int i = 0; i < dataLength - gap; ++i)
+    {
+			if(aInputData[i] > aInputData[i + gap])
+      {
+				isSwap = true;
+				swap(aInputData[i], aInputData[i + gap]);
+			}
+		}
+	}
+  while(gap > 1 || isSwap);
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
