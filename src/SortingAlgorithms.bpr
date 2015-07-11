@@ -3,9 +3,9 @@
 <PROJECT>
   <MACROS>
     <VERSION value="BCB.06.00"/>
-    <PROJECT value="SortingAlgorithms.exe"/>
-    <OBJFILES value="SortingAlgorithms.obj UMainForm.obj UDataOps.obj IGeneral\UIGeneral.obj 
-      USorting.obj"/>
+    <PROJECT value="..\exe\SortingAlgorithms.exe"/>
+    <OBJFILES value="..\obj\SortingAlgorithms.obj ..\obj\UDataOps.obj ..\obj\UMainForm.obj 
+      ..\obj\USorting.obj ..\obj\UIGeneral.obj"/>
     <RESFILES value="SortingAlgorithms.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
@@ -40,10 +40,10 @@
       -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
     <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
       -tW -tWM"/>
-    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <PFLAGS value="-N2..\obj -N0..\obj -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
     <AFLAGS value="/mx /w2 /zd"/>
-    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <LFLAGS value="-I..\obj -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
@@ -55,10 +55,10 @@
   <FILELIST>
       <FILE FILENAME="SortingAlgorithms.res" FORMNAME="" UNITNAME="SortingAlgorithms.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="SortingAlgorithms.cpp" FORMNAME="" UNITNAME="SortingAlgorithms" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UDataOps.cpp" FORMNAME="" UNITNAME="UDataOps.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="UMainForm.cpp" FORMNAME="MainForm" UNITNAME="UMainForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="UDataOps.cpp" FORMNAME="" UNITNAME="UDataOps" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="USorting.cpp" FORMNAME="" UNITNAME="USorting.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="IGeneral\UIGeneral.cpp" FORMNAME="" UNITNAME="UIGeneral" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="USorting.cpp" FORMNAME="" UNITNAME="USorting" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>
@@ -90,6 +90,33 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+
+[Excluded Packages]
+c:\program files (x86)\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrated Translation Environment
+
+[HistoryLists\hlIncludePath]
+Count=1
+Item0=IGeneral;C:\Users\Dimitar.D.Petrov;D:\projects\SortingAlgorithms\src;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=1
+Item0=IGeneral;C:\Users\Dimitar.D.Petrov;D:\projects\SortingAlgorithms\src;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\obj
+
+[HistoryLists\hlFinalOutputDir]
+Count=1
+Item0=..\exe
 
 [Debugging]
 DebugSourceDirs=$(BCB)\source\vcl

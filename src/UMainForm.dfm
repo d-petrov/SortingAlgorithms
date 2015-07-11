@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 170
-  Top = 269
+  Left = 350
+  Top = 261
   Width = 828
   Height = 403
   Caption = 'MainForm'
@@ -68,12 +68,26 @@ object MainForm: TMainForm
     Height = 185
     Caption = 'Output '
     TabOrder = 1
+    object Label2: TLabel
+      Left = 8
+      Top = 104
+      Width = 73
+      Height = 13
+      Caption = 'Runtime(msec):'
+    end
     object ResultRichEdit: TRichEdit
       Left = 8
       Top = 16
       Width = 321
       Height = 81
       TabOrder = 0
+    end
+    object RuntimeStaticText: TStaticText
+      Left = 88
+      Top = 104
+      Width = 4
+      Height = 4
+      TabOrder = 1
     end
   end
   object GroupBox4: TGroupBox
@@ -102,7 +116,8 @@ object MainForm: TMainForm
         '--select--'
         'Selection sort'
         'Insertion sort'
-        'Bubble sort')
+        'Bubble sort'
+        'Shellsort')
     end
     object GoButton: TButton
       Left = 238

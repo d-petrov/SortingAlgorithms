@@ -91,6 +91,24 @@ __int64 BubbleSort::SortChild(vector<int> &aInputData)
   }
 }
 //---------------------------------------------------------------------------
+__int64 Shellsort::SortChild(vector<int> &aInputData)
+{
+  size_t len = aInputData.size();
+  //
+  int gapSize = 0;
+  //Assigns gap size to be half of the original size initially, which is the original Donald Shell sequence N/2*i, i={1,n}
+  for (gapSize = len/2; gapSize > 0; gapSize /= 2)
+  {
+    for (int i = gapSize; i < len; i++)
+    {
+      for (int j = i - gapSize; j >= 0 && aInputData[j] > aInputData[j + gapSize]; j -= gapSize)
+      {
+        swap(aInputData[j],aInputData[j + gapSize]);
+      }
+    }
+  }
+}
+//---------------------------------------------------------------------------
 #pragma package(smart_init)
 
 

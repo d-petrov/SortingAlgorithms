@@ -6,7 +6,7 @@
 #include "UMainForm.h"
 //---------------------------------------------------------------------------
 #include "UDataOps.h"
-#include "USorting.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -32,15 +32,20 @@ void __fastcall TMainForm::ImportDataSetButtonClick(TObject *Sender)
   }
 }
 //---------------------------------------------------------------------------
-void TMainForm::ShowResult(vector<int> aInput)
+void TMainForm::ShowResult(vector<int> aInput,RuntimeResult* aRunRes)
 {
   TStringList* outList = dataOps->ArrayToDataSet(aInput);
   if(outList)
   {
-    ResultRichEdit->Text = FormatOutputText(outList->Text);
+    ResultRichEdit->Text = dataOps->FormatOutputText(outList->Text);
     dataOps->SaveToFile("D:\\result.txt",outList);
   }
   delete outList;
+  //
+  if(aRunRes)
+  {
+    RuntimeStaticText->Caption = aRunRes->ticks;
+  }
 }
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::GoButtonClick(TObject *Sender)
@@ -54,12 +59,14 @@ void __fastcall TMainForm::GoButtonClick(TObject *Sender)
       break;
     case IDX_BBL : sort = new BubbleSort;
       break;
+    case IDX_SHL : sort = new Shellsort;
+      break;
     default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);return;
   }
   vector<int> input = dataOps->DataSetToArray();
-  sort->Sort(input);
+  RuntimeResult result = sort->Sort(input);
   //
-  ShowResult(input);
+  ShowResult(input,&result);
   //
   delete sort;
 }

@@ -11,9 +11,10 @@
 #include <Dialogs.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL};
+enum COMBO_INDEX {IDX_BAD,IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL};
 //---------------------------------------------------------------------------
 #include "UDataOps.h"
+#include "USorting.h"
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
@@ -31,12 +32,14 @@ __published:	// IDE-managed Components
   TLabel *Label1;
   TButton *GoButton;
   TRichEdit *ResultRichEdit;
+  TLabel *Label2;
+  TStaticText *RuntimeStaticText;
   void __fastcall ImportDataSetButtonClick(TObject *Sender);
   void __fastcall GoButtonClick(TObject *Sender);
 private:	// User declarations
   DataOps* dataOps;
   //
-  void ShowResult(vector<int> aInput);
+  void ShowResult(vector<int> aInput,RuntimeResult* aRunRes = NULL);
 public:		// User declarations
   __fastcall TMainForm(TComponent* Owner);
 };

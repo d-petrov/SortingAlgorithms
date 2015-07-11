@@ -38,4 +38,10 @@ class BubbleSort : public SortBase
      __int64 SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
+class Shellsort : public SortBase
+{
+  private:
+     __int64 SortChild(vector<int> &aInputData);
+};
+//---------------------------------------------------------------------------
 #endif
