@@ -244,7 +244,7 @@ void Quicksort::DoSort(vector<int> &aInputData, int aFirst, int aLast)
 //---------------------------------------------------------------------------
 void Quicksort::SortChild(vector<int> &aInputData)
 {
-  DoSort(aInputData,aInputData.front(),aInputData.back());
+  DoSort(aInputData,aInputData.front(),aInputData.size());
 }
 //---------------------------------------------------------------------------
 void Heapsort::SiftDown(vector<int> &aInputData, int aIndex, int aSize)

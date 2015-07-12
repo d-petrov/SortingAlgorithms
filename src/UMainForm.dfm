@@ -29,21 +29,13 @@ object MainForm: TMainForm
       TabOrder = 0
       OnClick = ImportDataSetButtonClick
     end
-    object GenerateRandomButton: TButton
-      Left = 208
-      Top = 24
-      Width = 81
-      Height = 25
-      Caption = 'Generate Rand'
-      TabOrder = 1
-    end
     object GroupBox2: TGroupBox
       Left = 8
       Top = 64
       Width = 337
       Height = 105
       Caption = 'Preview'
-      TabOrder = 2
+      TabOrder = 1
       object DataPreviewRichEdit: TRichEdit
         Left = 8
         Top = 16
@@ -51,14 +43,6 @@ object MainForm: TMainForm
         Height = 81
         TabOrder = 0
       end
-    end
-    object GenerateSpecificButton: TButton
-      Left = 96
-      Top = 24
-      Width = 97
-      Height = 25
-      Caption = 'Generate Specific'
-      TabOrder = 3
     end
   end
   object GroupBox3: TGroupBox

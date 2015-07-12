@@ -17,7 +17,7 @@
 #Ignore exe,log
 /exe/*.lib
 *.off
-*.exe
+#*.exe
 *.log
 #Ignore parasitic files
 *.zip

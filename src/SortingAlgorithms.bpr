@@ -12,7 +12,7 @@
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) UMainForm.dfm"/>
     <LIBFILES value=""/>
-    <LIBRARIES value=""/>
+    <LIBRARIES value="rtl.lib vcl.lib"/>
     <SPARELIBS value="vcl.lib rtl.lib"/>
     <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi dbrtl.bpi vcldb.bpi dsnap.bpi cds.bpi bdertl.bpi 
       vcldbx.bpi bcb2kaxserver.bpi bcbie.bpi dsnapcrba.bpi dsnapcon.bpi 
@@ -27,8 +27,8 @@
     <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
     <RELEASELIBPATH value="$(BCB)\lib\release"/>
     <LINKER value="ilink32"/>
-    <USERDEFINES value="_DEBUG"/>
-    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="SortingAlgorithms.cpp"/>
     <INCLUDEPATH value="IGeneral;C:\Users\Dimitar.D.Petrov;D:\projects\SortingAlgorithms\src;$(BCB)\include;$(BCB)\include\vcl"/>
     <LIBPATH value="IGeneral;C:\Users\Dimitar.D.Petrov;D:\projects\SortingAlgorithms\src;$(BCB)\lib\obj;$(BCB)\lib"/>
@@ -37,19 +37,18 @@
   </MACROS>
   <OPTIONS>
     <IDLCFLAGS value="-IIGeneral -IC:\Users\Dimitar.D.Petrov -ID:\projects\SortingAlgorithms\src 
-      -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
-    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
-      -tW -tWM"/>
-    <PFLAGS value="-N2..\obj -N0..\obj -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+      -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
+    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -a8 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-N2..\obj -N0..\obj -$Y- -$L- -$D- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
-    <AFLAGS value="/mx /w2 /zd"/>
-    <LFLAGS value="-I..\obj -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-I..\obj -D&quot;&quot; -aa -Tpe -x -Gn"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
-    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
     <ALLRES value="$(RESFILES)"/>
-    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
     <OTHERFILES value=""/>
   </LINKER>
   <FILELIST>
@@ -115,8 +114,9 @@ Count=1
 Item0=..\obj
 
 [HistoryLists\hlFinalOutputDir]
-Count=1
-Item0=..\exe
+Count=2
+Item0=..\exe\
+Item1=..\exe
 
 [Debugging]
 DebugSourceDirs=$(BCB)\source\vcl

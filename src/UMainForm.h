@@ -28,12 +28,10 @@ __published:	// IDE-managed Components
   TGroupBox *GroupBox1;
   TOpenDialog *OpenDialog;
   TButton *ImportDataSetButton;
-  TButton *GenerateRandomButton;
   TGroupBox *GroupBox2;
   TRichEdit *DataPreviewRichEdit;
   TGroupBox *GroupBox3;
   TGroupBox *GroupBox4;
-  TButton *GenerateSpecificButton;
   TComboBox *MethodComboBox;
   TLabel *Label1;
   TButton *GoButton;
