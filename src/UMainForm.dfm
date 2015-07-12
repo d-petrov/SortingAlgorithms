@@ -1,8 +1,8 @@
 object MainForm: TMainForm
   Left = 350
   Top = 261
-  Width = 828
-  Height = 403
+  Width = 371
+  Height = 479
   Caption = 'MainForm'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -63,9 +63,9 @@ object MainForm: TMainForm
   end
   object GroupBox3: TGroupBox
     Left = 0
-    Top = 184
-    Width = 713
-    Height = 185
+    Top = 264
+    Width = 353
+    Height = 177
     Caption = 'Output '
     TabOrder = 1
     object Label2: TLabel
@@ -99,10 +99,10 @@ object MainForm: TMainForm
     end
   end
   object GroupBox4: TGroupBox
-    Left = 360
-    Top = 0
+    Left = 0
+    Top = 184
     Width = 353
-    Height = 185
+    Height = 81
     Caption = 'Compute'
     TabOrder = 2
     object Label1: TLabel
@@ -112,6 +112,14 @@ object MainForm: TMainForm
       Height = 13
       Caption = 'Method:'
     end
+    object BoundaryLabel: TLabel
+      Left = 8
+      Top = 48
+      Width = 48
+      Height = 13
+      Caption = 'Boundary:'
+      Visible = False
+    end
     object MethodComboBox: TComboBox
       Left = 64
       Top = 24
@@ -120,6 +128,7 @@ object MainForm: TMainForm
       ItemHeight = 13
       TabOrder = 0
       Text = '--select--'
+      OnChange = MethodComboBoxChange
       Items.Strings = (
         '--select--'
         'Selection sort'
@@ -138,6 +147,14 @@ object MainForm: TMainForm
       Caption = 'Go'
       TabOrder = 1
       OnClick = GoButtonClick
+    end
+    object BoundaryEditBox: TEdit
+      Left = 64
+      Top = 48
+      Width = 65
+      Height = 21
+      TabOrder = 2
+      Visible = False
     end
   end
   object OpenDialog: TOpenDialog

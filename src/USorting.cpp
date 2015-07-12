@@ -21,7 +21,7 @@ RuntimeResult SortBase::Sort(vector<int> &aInputData)
   //
   __int64 tickCountStart = GetTickCount();
   //
-  result.iterations = SortChild(aInputData);
+  SortChild(aInputData);
   //
   __int64 tickCountEnd = GetTickCount();
   //
@@ -30,12 +30,11 @@ RuntimeResult SortBase::Sort(vector<int> &aInputData)
   return result;
 }
 //---------------------------------------------------------------------------
-__int64 InsertionSort::SortChild(vector<int> &aInputData)
+void InsertionSort::SortChild(vector<int> &aInputData)
 {
   int current = 0;
-  __int64 iterations = 0;
   //
-  for (unsigned i = 1, j; i < dataLength; i++,++iterations)
+  for (unsigned i = 1, j; i < dataLength; i++)
   {
     j = i;
     current = aInputData[j];
@@ -44,18 +43,15 @@ __int64 InsertionSort::SortChild(vector<int> &aInputData)
     {
         aInputData[j] = aInputData[j-1];
         j--;
-        ++iterations;
     }
     aInputData[j] = current;
   }
-  return iterations;
 }
 //---------------------------------------------------------------------------
-__int64 SelectionSort::SortChild(vector<int> &aInputData)
+void SelectionSort::SortChild(vector<int> &aInputData)
 {
   unsigned j = 0;
   unsigned min = 0;
-  __int64 iterations = 0;
   //
   for (unsigned i = 0; i < dataLength-1; i++)
   {
@@ -66,18 +62,15 @@ __int64 SelectionSort::SortChild(vector<int> &aInputData)
       {
         min = j;
       }
-      iterations++;
     }
     if(min != i)
     {
       swap(aInputData[i], aInputData[min]);//internal function
-      iterations++;
     }
   }
-  return iterations;
 }
 //---------------------------------------------------------------------------
-__int64 BubbleSort::SortChild(vector<int> &aInputData)
+void BubbleSort::SortChild(vector<int> &aInputData)
 {
   for (int i = dataLength; i > 1 ; i--)
   {
@@ -91,7 +84,7 @@ __int64 BubbleSort::SortChild(vector<int> &aInputData)
   }
 }
 //---------------------------------------------------------------------------
-__int64 Shellsort::SortChild(vector<int> &aInputData)
+void Shellsort::SortChild(vector<int> &aInputData)
 {
   int gapSize = 0;
   //Assigns gap size to be half of the original size initially, which is the original Donald Shell sequence N/2*i, i={1,n}
@@ -123,7 +116,7 @@ int Combsort::CalculateGap(int aGap)
 	return aGap;
 }
 //---------------------------------------------------------------------------
-__int64 Combsort::SortChild(vector<int> &aInputData)
+void Combsort::SortChild(vector<int> &aInputData)
 {
 	int gap = dataLength;
 	bool isSwap = false;
@@ -199,7 +192,7 @@ vector<int> Mergesort::DoMerge(vector<int> &aInputData, vector<int> &aLeft, vect
   return result;
 }
 //---------------------------------------------------------------------------
-__int64 Mergesort::SortChild(vector<int> &aInputData)
+void Mergesort::SortChild(vector<int> &aInputData)
 {
   DoSort(aInputData);
 }
@@ -249,7 +242,7 @@ void Quicksort::DoSort(vector<int> &aInputData, int aFirst, int aLast)
   }
 }
 //---------------------------------------------------------------------------
-__int64 Quicksort::SortChild(vector<int> &aInputData)
+void Quicksort::SortChild(vector<int> &aInputData)
 {
   DoSort(aInputData,aInputData.front(),aInputData.back());
 }
@@ -283,7 +276,7 @@ void Heapsort::Heapify(vector<int> &aInputData)
   }
 }
 //---------------------------------------------------------------------------
-__int64 Heapsort::SortChild(vector<int> &aInputData)
+void Heapsort::SortChild(vector<int> &aInputData)
 {
   Heapify(aInputData);
   int workLength = dataLength;
@@ -296,6 +289,44 @@ __int64 Heapsort::SortChild(vector<int> &aInputData)
   }
 }
 //---------------------------------------------------------------------------
+void Countingsort::SortChild(vector<int> &aInputData)
+{
+  //upperBoundary,dataLength - class members
+  vector<int> sortedData(aInputData);
+  vector<int> tempData;
+  for(int i = 0; i <= /*upperBoundary*/dataLength; i++) //access violation if boundary < datasize
+  {
+    tempData.push_back(0);
+  }
+  //create histogram
+  for(int j = 0; j < dataLength; j++)
+  {
+    tempData[aInputData[j]] = tempData[aInputData[j]] + 1;
+  }
+  //Sort the histogram
+  for(int i = 1; i <= upperBoundary; i++)
+  {
+    tempData[i] = tempData[i] + tempData[i-1];
+  }
+  //Place the sorted data into its place
+  for(int j = dataLength - 1; j >= 0; j--)
+  {
+    sortedData[tempData[aInputData[j]] - 1] = aInputData[j];
+    tempData[aInputData[j]] = tempData[aInputData[j]] - 1;
+  }
+  //Overwrite the input data
+  for(int i = 0; i < aInputData.size(); i++)
+  {
+    aInputData[i] = sortedData[i];
+  }
+}
+//---------------------------------------------------------------------------
+Countingsort::Countingsort(int aBoundary)
+{
+  upperBoundary = aBoundary;
+}
+//---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 
 

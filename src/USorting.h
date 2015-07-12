@@ -19,38 +19,38 @@ class SortBase  //base class
     size_t dataLength;//input data size
   public:
      virtual RuntimeResult Sort(vector<int> &aInputData);
-     virtual __int64 SortChild(vector<int> &aInputData)=0;
+     virtual void SortChild(vector<int> &aInputData)=0;
 };
 //---------------------------------------------------------------------------
 class InsertionSort : public SortBase
 {
   private:
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
 class SelectionSort : public SortBase
 {
   private:
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
 class BubbleSort : public SortBase
 {
   private:
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
 class Shellsort : public SortBase
 {
   private:
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
 class Combsort : public SortBase
 {
   private:
      int CalculateGap(int aGap);
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
 class Mergesort : public SortBase
@@ -59,7 +59,7 @@ class Mergesort : public SortBase
      vector<int> DoSort(vector<int> &aInputData);
      vector<int> DoMerge(vector<int> &aInputData, vector<int> &aLeft, vector<int> &aRight);
     //
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
 class Quicksort : public SortBase
@@ -68,7 +68,7 @@ class Quicksort : public SortBase
      void Partition(vector<int> &aInputData, int aPivot, int& aLeft, int& aRight);
      void DoSort(vector<int> &aInputData, int aFirst, int aLast);
      //
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
 };
 //---------------------------------------------------------------------------
 class Heapsort : public SortBase
@@ -77,7 +77,17 @@ class Heapsort : public SortBase
     void SiftDown(vector<int> &aInputData, int aIndex, int aSize);
     void Heapify(vector<int> &aInputData);
     //
-     __int64 SortChild(vector<int> &aInputData);
+     void SortChild(vector<int> &aInputData);
+};
+//---------------------------------------------------------------------------
+class Countingsort : public SortBase
+{
+  private:
+    int upperBoundary;
+     void SortChild(vector<int> &aInputData);
+     //
+  public:
+    Countingsort(int aBoundary);
 };
 //---------------------------------------------------------------------------
 #endif

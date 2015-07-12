@@ -11,11 +11,11 @@
 #include <Dialogs.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-enum COMBO_INDEX {IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL,IDX_CMB,IDX_MRG,IDX_QCK,IDX_HPS};
+enum COMBO_INDEX {IDX_SEL,IDX_INS,IDX_BBL,IDX_SHL,IDX_CMB,IDX_MRG,IDX_QCK,IDX_HPS,IDX_CNT};
 static const AnsiString ALGO_NAMES[] =
 {
   "Selection sort","Insertion sort","Bubble sort","Shell sort",
-  "Comb sort","Merge sort","Quick sort","Heap sort"
+  "Comb sort","Merge sort","Quick sort","Heap sort","Counting sort"
 };
 
 //---------------------------------------------------------------------------
@@ -41,10 +41,14 @@ __published:	// IDE-managed Components
   TLabel *Label2;
   TStaticText *RuntimeStaticText;
   TStaticText *OutputResultStaticText;
+  TEdit *BoundaryEditBox;
+  TLabel *BoundaryLabel;
   void __fastcall ImportDataSetButtonClick(TObject *Sender);
   void __fastcall GoButtonClick(TObject *Sender);
+  void __fastcall MethodComboBoxChange(TObject *Sender);
 private:	// User declarations
   void FillSelectionDropDown();
+  bool ConvertBoundary(int& aBoundary);
   DataOps* dataOps;
   //
   void ShowResult(vector<int> aInput,RuntimeResult* aRunRes = NULL);

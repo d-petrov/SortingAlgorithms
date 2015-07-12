@@ -72,6 +72,7 @@ void TMainForm::ShowResult(vector<int> aInput,RuntimeResult* aRunRes)
 void __fastcall TMainForm::GoButtonClick(TObject *Sender)
 {
   SortBase* sort = NULL;
+  int boundary = -1;
   switch(MethodComboBox->ItemIndex)
   {
     case IDX_SEL : sort = new SelectionSort;
@@ -90,6 +91,9 @@ void __fastcall TMainForm::GoButtonClick(TObject *Sender)
       break;
     case IDX_HPS : sort = new Heapsort;
       break;
+    case IDX_CNT :
+      if(ConvertBoundary(boundary))sort = new Countingsort(boundary);else return;
+      break;
     default: Application->MessageBoxA("Selection is invalid","Error",MB_OK|MB_ICONERROR);
      return;
   }
@@ -99,6 +103,26 @@ void __fastcall TMainForm::GoButtonClick(TObject *Sender)
   ShowResult(input,&result);
   //
   delete sort;
+}
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::MethodComboBoxChange(TObject *Sender)
+{
+  BoundaryEditBox->Visible = (MethodComboBox->ItemIndex == IDX_CNT);
+  BoundaryLabel->Visible = BoundaryEditBox->Visible;
+}
+//---------------------------------------------------------------------------
+bool TMainForm::ConvertBoundary(int& aBoundary)
+{
+  AnsiString text = BoundaryEditBox->Text;
+  if(text != "")
+  {
+    if((aBoundary = text.ToIntDef(0)) > 0)
+    {
+      return true;
+    }
+  }
+  Application->MessageBoxA("Boundary should be a natural number","Error",MB_OK|MB_ICONERROR);
+  return false;
 }
 //---------------------------------------------------------------------------
 
